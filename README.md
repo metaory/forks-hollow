@@ -20,11 +20,11 @@ I still wanted the same paths, remotes, and README context. I did not want full 
 
 ## What it does
 
-**Hollow** a clone forest into a separate directory:
+`Hollow` a clone forest into a separate directory:
 
-- **Same directory structure** as the source tree
-- Each repo keeps `**.git`** and `**README.md**` only; everything else is stripped
-- Result is typically **a few megabytes** instead of gigabytes
+- Same directory structure as the source tree
+- Each repo keeps `.git` and `README.md` only; everything else is stripped
+- Result is typically a few megabytes instead of gigabytes
 
 Two CLI tools:
 
