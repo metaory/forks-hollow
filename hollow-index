@@ -1,0 +1,53 @@
+#!/bin/bash
+
+function print_help {
+  echo -e '\e[31m hollow-index [-i INPUT-DIR] [-o OUTPUT-DIR] \n
+  \e[31m INPUT-DIR\n\e[33m is directory with nested git directories with their full content \n
+  \e[31m OUTPUT-DIR\n\e[33m is the new directory with just
+  \e[37m (directories with README.md and .git) \n
+  \e[32;1m <maintaining directory structure> \e[0m'
+  exit
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -i | --input) INPUT="$2"; shift 2 ;;
+    -o | --output) OUTPUT="$2"; shift 2 ;;
+    -h | --help) print_help ;;
+    *) print_help ;
+  esac
+done
+
+[ -z "$INPUT" ] || [ -z "$OUTPUT" ] && print_help 
+
+mkdir -p "$OUTPUT" &>/dev/null
+
+mapfile -t LIST < <(find "$INPUT" -type d -name '.git')
+
+C=0
+for L in "${LIST[@]}"; do
+  target="${L/.git/}"
+  output="${OUTPUT}${target/${INPUT}/}"
+  remote="$(
+    cd "$target" || true; 
+    git init &>/dev/null; 
+    git remote get-url origin
+  )"
+
+  echo -e "\n\e[31;1m $((++C))\e[37;22m/\e[36m${#LIST[@]}"
+  echo -e "::\e[33m $target"
+  echo -e ">>\e[32m $output"
+  echo -e " =>\e[34m $remote"
+
+  mkdir -p "$output"
+  cp "${target}/README.md" "$output" &>/dev/null
+  (
+    "cd $output" || true; 
+    git init; 
+    git remote add origin "$remote"
+  )&>/dev/null
+  sleep .1
+done
+
+# while read -r L; do
+# done < <(find "$INPUT" -type d -name '.git')

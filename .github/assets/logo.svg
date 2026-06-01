@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="500"
+   height="500"
+   viewBox="0 0 500 500"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <meshgradient
+       id="meshgradient1"
+       gradientUnits="userSpaceOnUse"
+       x="25"
+       y="25">
+      <meshrow
+         id="meshrow1">
+        <meshpatch
+           id="meshpatch1">
+          <stop
+             path="c 75,0  150,0  225,0"
+             style="stop-color:#ffffff;stop-opacity:1"
+             id="stop1" />
+          <stop
+             path="c 0,75  0,150  0,225"
+             style="stop-color:#e9afaf;stop-opacity:1"
+             id="stop2" />
+          <stop
+             path="c -75,0  -150,0  -225,0"
+             style="stop-color:#e9afaf;stop-opacity:1"
+             id="stop3" />
+          <stop
+             path="c 0,-75  0,-150  0,-225"
+             style="stop-color:#ffaaaa;stop-opacity:1"
+             id="stop4" />
+        </meshpatch>
+        <meshpatch
+           id="meshpatch4">
+          <stop
+             path="c 75,0  150,0  225,0"
+             id="stop5" />
+          <stop
+             path="c 0,75  0,150  0,225"
+             style="stop-color:#ffffff;stop-opacity:1"
+             id="stop6" />
+          <stop
+             path="c -75,0  -150,0  -225,0"
+             style="stop-color:#ffb380;stop-opacity:1"
+             id="stop7" />
+        </meshpatch>
+      </meshrow>
+      <meshrow
+         id="meshrow7">
+        <meshpatch
+           id="meshpatch7">
+          <stop
+             path="c 0,75  0,150  0,225"
+             id="stop8" />
+          <stop
+             path="c -75,0  -150,0  -225,0"
+             style="stop-color:#ffccaa;stop-opacity:1"
+             id="stop9" />
+          <stop
+             path="c 0,-75  0,-150  0,-225"
+             style="stop-color:#ffffff;stop-opacity:1"
+             id="stop10" />
+        </meshpatch>
+        <meshpatch
+           id="meshpatch10">
+          <stop
+             path="c 0,75  0,150  0,225"
+             id="stop11" />
+          <stop
+             path="c -75,0  -150,0  -225,0"
+             style="stop-color:#ffffff;stop-opacity:1"
+             id="stop12" />
+        </meshpatch>
+      </meshrow>
+    </meshgradient>
+  </defs>
+  <g
+     id="layer1">
+    <rect
+       style="fill:url(#meshgradient1);stroke-width:4.53543;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill"
+       id="rect1"
+       width="450"
+       height="450"
+       x="25"
+       y="25"
+       rx="140"
+       ry="140" />
+    <path
+       id="rect28"
+       style="display:none;fill:#1a1a1a;fill-opacity:1;stroke-width:4.53543;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill"
+       d="m 200.36061,152.95303 c 30.92353,40.48464 64.76862,31.88713 100,0 20.53732,-18.58786 71.04519,31.98918 50,50 -47.93937,41.02731 -19.3622,69.77418 0,100 14.94146,23.32472 -30.74051,69.90884 -50,50 -27.25118,-28.16998 -56.54935,-46.85913 -100,0 -18.8342,20.31165 -64.35194,-26.30798 -50,-50 18.41408,-30.39776 39.5101,-60.36796 0,-100 -19.55665,-19.61701 33.18575,-72.01297 50,-50 z" />
+    <path
+       id="path29"
+       style="fill:#413131;fill-opacity:1;stroke-width:4.53543;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill"
+       d="m 200.36061,152.95303 c 30.92353,40.48464 64.76862,31.88713 100,0 20.53732,-18.58786 71.04519,31.98918 50,50 -47.93937,41.02731 -19.3622,69.77418 0,100 14.94146,23.32472 -30.74051,69.90884 -50,50 -27.25118,-28.16998 -56.54935,-46.85913 -100,0 -18.8342,20.31165 -64.35194,-26.30798 -50,-50 18.41408,-30.39776 39.5101,-60.36796 0,-100 -19.55665,-19.61701 33.18575,-72.01297 50,-50 z" />
+  </g>
+</svg>

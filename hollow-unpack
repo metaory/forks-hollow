@@ -1,0 +1,78 @@
+#!/bin/bash
+
+function print_help {
+  echo -e '\e[31m hollow-unpack [-i INPUT-DIR] [-o OUTPUT-DIR] \n
+  \e[31m INPUT-DIR\n\e[33m is the directory with shallowed git dir
+  \e[37m (directories with README.md and .git) \n
+  \e[31m OUTPUT-DIR\n\e[33m is the new directory with all content of the shallowed forks unpacked\n
+  \e[32;1m <maintaining directory structure> \e[0m'
+  exit
+}
+
+function fail {
+  printf ' \e[48;5;88;38;5;232m[ERROR]\e[0m\e[33m %s\n\e[0m' "$*"
+}
+
+function default_branch {
+  git symbolic-ref -q --short refs/remotes/origin/HEAD 2>/dev/null \
+    | sed 's/^origin\///' \
+    || sed -n 's/^ref: refs\/heads\/\///p' .git/HEAD
+}
+
+function unpack_repo {
+  src="$1"
+  dst="$2"
+
+  remote="$(git -C "$src" remote get-url origin 2>/dev/null)" || {
+    fail "no origin remote: $src"
+    return 1
+  }
+
+  echo -e "\n\e[31;1m $((++C))\e[37;22m/\e[36m${#LIST[@]}"
+  echo -e "::\e[33m $src"
+  echo -e ">>\e[32m $dst"
+  echo -e " =>\e[34m $remote"
+
+  mkdir -p "$dst"
+  cp -a "${src}/." "$dst/"
+
+  (
+    cd "$dst" || exit 1
+    git fetch origin || { fail "fetch failed: $dst"; exit 1; }
+    branch="$(default_branch)"
+    branch="${branch:-main}"
+    git checkout -f -B "$branch" "origin/$branch" \
+      || { fail "checkout failed: $dst (branch: $branch)"; exit 1; }
+  )
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -i | --input) INPUT="$2"; shift 2 ;;
+    -o | --output) OUTPUT="$2"; shift 2 ;;
+    -h | --help) print_help ;;
+    *) print_help ;;
+  esac
+done
+
+[ -z "$INPUT" ] || [ -z "$OUTPUT" ] && print_help
+[ -d "$INPUT" ] || { fail "input not found: $INPUT"; exit 1; }
+
+mkdir -p "$OUTPUT"
+
+mapfile -t LIST < <(find "$INPUT" -type d -name '.git')
+
+FAIL=0
+C=0
+for L in "${LIST[@]}"; do
+  src="${L%/.git}"
+  rel="${src#"$INPUT"}"
+  rel="${rel#/}"
+  dst="${OUTPUT%/}/${rel}"
+
+  unpack_repo "$src" "$dst" || FAIL=$((FAIL + 1))
+done
+
+echo -e "\n\e[36mdone:\e[0m $((C - FAIL))/${#LIST[@]} ok, $FAIL failed"
+[ "$FAIL" -gt 0 ] && exit 1
+exit 0
