@@ -1,5 +1,5 @@
 <div align="center">
-    <img src=".github/assets/logo.svg" alt="demo" height="128" />
+    <img src=".github/assets/logo.png" alt="demo" height="128" />
     <h4>forks-hollow</h4>
     <p>
         Keep your fork tree layout
